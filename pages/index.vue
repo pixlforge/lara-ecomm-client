@@ -1,5 +1,5 @@
 <template>
-  <div class="container mx-auto">
+  <div class="container px-4 mx-auto">
     <p>
       Home
     </p>
@@ -8,8 +8,5 @@
 
 <script>
 export default {
-  mounted() {
-    console.log('ok');
-  }
 }
 </script>
