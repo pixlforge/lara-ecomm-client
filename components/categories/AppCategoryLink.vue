@@ -1,7 +1,7 @@
 <template>
   <div>
     <template v-if="hasChildren">
-      <div class="relative block border-b-4 border-transparent hover:border-pink-400 text-lg font-bold hover:text-gray-800 uppercase p-8 group">
+      <div class="relative block border-b-4 border-transparent hover:border-pink-400 text-lg font-bold hover:text-gray-800 uppercase group cursor-pointer p-8">
         {{ category.name }} (dd)
         <ul class="absolute left-0 min-w-64 hidden group-hover:block bg-white rounded-lg shadow-2xl py-6">
           <li

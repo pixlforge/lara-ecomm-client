@@ -2,7 +2,7 @@
   <div class="text-gray-600">
     <AppNavbar/>
     <AppCategoriesMenu/>
-    <nuxt/>
+    <nuxt class="container py-32 mx-auto"/>
   </div>
 </template>
 
