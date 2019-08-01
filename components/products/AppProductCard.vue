@@ -18,20 +18,18 @@
         {{ product.description }}
       </p>
       <!-- Price -->
-      <span class="inline-block rounded-full bg-pink-400 text-white px-4">
-        <span class="text-xs font-bold mr-1">
-          CHF
-        </span>
-        <span class="text-3xl font-extrabold">
-          100.-
-        </span>
-      </span>
+      <AppPriceLabel :price="product.price"/>
     </div>
   </nuxt-link>
 </template>
 
 <script>
+import AppPriceLabel from '@/components/labels/AppPriceLabel'
+
 export default {
+  components: {
+    AppPriceLabel
+  },
   props: {
     product: {
       type: Object,

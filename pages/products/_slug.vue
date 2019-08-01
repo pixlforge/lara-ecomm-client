@@ -15,9 +15,7 @@
         class="text-gray-700 leading-relaxed my-8">
         {{ product.description }}
       </p>
-      <AppPriceLabel>
-        {{ product.price }}
-      </AppPriceLabel>
+      <AppPriceLabel :price="product.price"/>
     </div>
   </main>
 </template>

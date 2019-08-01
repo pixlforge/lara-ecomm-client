@@ -5,10 +5,12 @@
     <span
       :class="`text-${color}-200`"
       class="text-sm">
-      {{ currency }}
+      {{ price.detailed.currency }}
     </span>
     <span class="text-2xl text-white">
-      <slot/>
+      <slot>
+        {{ price.detailed.amount }}
+      </slot>
     </span>
   </span>
 </template>
@@ -21,10 +23,9 @@ export default {
       required: false,
       default: 'pink'
     },
-    currency: {
-      type: String,
-      required: false,
-      default: 'CHF'
+    price: {
+      type: Object,
+      required: true
     }
   }
 }
