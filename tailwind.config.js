@@ -2,6 +2,12 @@
 module.exports = {
   theme: {
     extend: {
+      fill: theme => ({
+        gray: {
+          '500': theme('colors.gray.500'),
+          '700': theme('colors.gray.700')
+        }
+      }),
       minWidth: {
         '64': '16rem'
       }

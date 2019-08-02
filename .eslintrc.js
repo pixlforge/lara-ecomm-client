@@ -14,7 +14,6 @@ module.exports = {
   // add your custom rules here
   rules: {
     'no-console': 'off',
-    'semi': 0,
     'vue/html-closing-bracket-spacing': 0,
     'vue/html-closing-bracket-newline': 0,
     'quote-props': 0
