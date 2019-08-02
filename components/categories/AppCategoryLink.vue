@@ -36,7 +36,7 @@ export default {
   },
   computed: {
     hasChildren() {
-      return this.category.children.length;
+      return this.category.children.length
     }
   }
 }

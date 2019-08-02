@@ -20,8 +20,8 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex';
-import AppCategoryLink from '@/components/categories/AppCategoryLink';
+import { mapGetters } from 'vuex'
+import AppCategoryLink from '@/components/categories/AppCategoryLink'
 
 export default {
   components: {
@@ -30,7 +30,7 @@ export default {
   data() {
     return {
       open: false
-    };
+    }
   },
   computed: {
     ...mapGetters({
@@ -39,7 +39,7 @@ export default {
   },
   methods: {
     toggleMenu() {
-      this.open = !this.open;
+      this.open = !this.open
     }
   }
 }

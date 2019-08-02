@@ -9,8 +9,12 @@
       <option
         v-for="variation in variations"
         :key="variation.id"
-        value="">
+        :value="variation.id">
         {{ variation.name }}
+
+        <template v-if="variation.price_varies">
+          ({{ variation.price.formatted }})
+        </template>
       </option>
     </AppFormSelect>
   </div>

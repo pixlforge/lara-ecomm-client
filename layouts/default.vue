@@ -7,8 +7,8 @@
 </template>
 
 <script>
-import AppNavbar from '@/components/navbar/AppNavbar';
-import AppCategoriesMenu from '@/components/categories/AppCategoriesMenu';
+import AppNavbar from '@/components/navbar/AppNavbar'
+import AppCategoriesMenu from '@/components/categories/AppCategoriesMenu'
 
 export default {
   components: {
