@@ -12,21 +12,24 @@
         'bg-white text-gray-200 border-gray-200 cursor-not-allowed': disabled,
         'text-gray-900 border-transparent': !disabled,
       }"
-      class="block w-full appearance-none rounded-lg text-lg leading-tight outline-none border border-transparent px-4 py-3">
+      class="block w-full appearance-none rounded-lg text-lg leading-tight outline-none border border-transparent px-4 py-3"
+      @change="$emit('input', $event.target.value)"
+    >
       <option
         v-if="!value"
         value=""
         selected
-        disabled>
+        disabled
+      >
         Select
       </option>
       <slot/>
     </select>
     <div
       v-show="!disabled"
-      class="absolute right-0 inset-y-0 flex justify-center items-center select-none">
-      <IconCaretDown
-        class="h-6 mr-4"/>
+      class="absolute right-0 inset-y-0 flex justify-center items-center select-none"
+    >
+      <IconCaretDown class="h-6 mr-4"/>
     </div>
   </div>
 </template>

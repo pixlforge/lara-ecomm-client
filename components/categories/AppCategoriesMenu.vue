@@ -3,16 +3,19 @@
     <div class="flex md:hidden justify-center pt-8">
       <button
         class="bg-pink-600 hover:bg-pink-800 rounded-lg text-white font-bold uppercase px-4 py-2"
-        @click="toggleMenu">
+        @click="toggleMenu"
+      >
         Categories
       </button>
     </div>
     <ul
       :class="open ? 'absolute block bg-white rounded-lg shadow-lg' : 'hidden'"
-      class="md:flex w-full md:w-auto">
+      class="md:flex w-full md:w-auto"
+    >
       <li
         v-for="category in categories"
-        :key="category.slug">
+        :key="category.slug"
+      >
         <AppCategoryLink :category="category"/>
       </li>
     </ul>

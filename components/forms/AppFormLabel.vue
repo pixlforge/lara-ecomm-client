@@ -1,5 +1,5 @@
 <template>
-  <label class="font-bold uppercase text-pink-400">
+  <label class="inline-block text-sm font-bold uppercase text-pink-400 mb-2">
     {{ label }}
   </label>
 </template>

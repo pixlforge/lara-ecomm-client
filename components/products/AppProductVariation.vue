@@ -1,17 +1,22 @@
 <template>
   <div>
+
     <!-- Label -->
     <AppFormLabel :label="type"/>
+
     <!-- Select -->
     <AppFormSelect
       name="variation"
-      :errors="errors">
+      :value="selectedVariationId"
+      :errors="errors"
+      @change.native="changed($event)"
+    >
       <option
         v-for="variation in variations"
         :key="variation.id"
-        :value="variation.id">
+        :value="variation.id"
+      >
         {{ variation.name }}
-
         <template v-if="variation.price_varies">
           ({{ variation.price.formatted }})
         </template>
@@ -37,11 +42,35 @@ export default {
     variations: {
       type: Array,
       required: true
+    },
+    value: {
+      type: Object,
+      required: false,
+      default: () => {
+        return {}
+      }
     }
   },
   data() {
     return {
       errors: {}
+    }
+  },
+  computed: {
+    selectedVariationId() {
+      if (!this.findVariation(this.value.id)) {
+        return ''
+      }
+
+      return this.value.id
+    }
+  },
+  methods: {
+    changed(event) {
+      this.$emit('input', this.findVariation(event.target.value))
+    },
+    findVariation(id) {
+      return this.variations.find(variation => variation.id === parseInt(id))
     }
   }
 }

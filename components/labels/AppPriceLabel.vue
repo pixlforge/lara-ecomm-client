@@ -1,10 +1,12 @@
 <template>
   <span
     :class="`bg-${color}-400`"
-    class="inline-block rounded-full font-bold uppercase leading-relaxed px-4">
+    class="inline-block rounded-full font-bold uppercase leading-relaxed px-4"
+  >
     <span
       :class="`text-${color}-200`"
-      class="text-sm">
+      class="text-sm"
+    >
       {{ price.detailed.currency }}
     </span>
     <span class="text-2xl text-white">

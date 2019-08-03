@@ -1,12 +1,14 @@
 <template>
   <nuxt-link
     :to="{ name: 'products-slug', params: { slug: product.slug } }"
-    class="sm:w-1/2 lg:w-1/3 rounded-lg border-2 border-gray-300 hover:border-pink-200 p-8">
+    class="sm:w-1/2 lg:w-1/3 rounded-lg border-2 border-gray-300 hover:border-pink-200 p-8"
+  >
     <div class="mb-10">
       <img
         src="https://bulma.io/images/placeholders/1280x960.png"
         alt="Product image"
-        class="rounded-lg shadow-xl">
+        class="rounded-lg shadow-xl"
+      >
     </div>
     <div class="">
       <!-- Name -->
