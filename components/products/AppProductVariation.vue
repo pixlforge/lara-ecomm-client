@@ -15,10 +15,15 @@
         v-for="variation in variations"
         :key="variation.id"
         :value="variation.id"
+        :disabled="!variation.in_stock"
       >
         {{ variation.name }}
         <template v-if="variation.price_varies">
           ({{ variation.price.formatted }})
+        </template>
+
+        <template v-if="!variation.in_stock">
+          (Out of stock)
         </template>
       </option>
     </AppFormSelect>
