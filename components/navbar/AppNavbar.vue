@@ -7,17 +7,34 @@
         </nuxt-link>
       </div>
       <ul class="flex font-bold -mx-4 mt-8 md:mt-0">
-        <li class="mx-4">
-          <nuxt-link :to="{ name: 'login' }">
-            Login
-          </nuxt-link>
-        </li>
-        <li class="mx-4">
-          Link
-        </li>
-        <li class="mx-4">
-          Link
-        </li>
+
+        <!-- Guest -->
+        <template v-if="!$auth.loggedIn">
+          <li class="mx-4">
+            <nuxt-link :to="{ name: 'login' }">
+              Login
+            </nuxt-link>
+          </li>
+          <li class="mx-4">
+            <nuxt-link :to="{ name: 'login' }">
+              Register
+            </nuxt-link>
+          </li>
+        </template>
+
+        <!-- Authenticated user -->
+        <template v-else>
+          <li class="mx-4">
+            {{ $auth.user.name }}
+          </li>
+          <li class="mx-4">
+            Orders
+          </li>
+          <li class="mx-4">
+            Cart (0)
+          </li>
+        </template>
+
       </ul>
     </div>
   </div>
