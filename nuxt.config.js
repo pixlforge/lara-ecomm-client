@@ -20,29 +20,35 @@ export default {
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
     ]
   },
+
   /*
   ** Customize the progress-bar color
   */
   loading: { color: '#fff' },
+
   /*
   ** Global CSS
   */
   css: [
     '~/assets/css/tailwind.css'
   ],
+
   /*
   ** Plugins to load before mounting the App
   */
   plugins: [
   ],
+
   /*
   ** Nuxt.js modules
   */
   modules: [
     // Doc: https://axios.nuxtjs.org/usage
     '@nuxtjs/axios',
-    '@nuxtjs/eslint-module'
+    '@nuxtjs/eslint-module',
+    '@nuxtjs/auth'
   ],
+
   /*
   ** Axios module configuration
   ** See https://axios.nuxtjs.org/options
@@ -50,6 +56,32 @@ export default {
   axios: {
     baseURL: 'http://lara-ecomm.test/api'
   },
+
+  auth: {
+    strategies: {
+      local: {
+        endpoints: {
+          login: {
+            url: '/auth/login',
+            method: 'post',
+            propertyName: 'meta.token'
+          },
+          logout: {
+            url: '/auth/logout',
+            method: 'post'
+          },
+          user: {
+            url: '/auth/me',
+            method: 'get',
+            propertyName: 'data'
+          }
+        },
+        // tokenRequired: true,
+        tokenType: 'bearer'
+      }
+    }
+  },
+
   /*
   ** Build configuration
   */

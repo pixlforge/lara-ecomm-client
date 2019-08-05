@@ -10,7 +10,7 @@
       :class="{
         'border-red-500': errors[name],
         'bg-white text-gray-200 border-gray-200 cursor-not-allowed': disabled,
-        'text-gray-900 border-transparent': !disabled,
+        'bg-gray-200 text-gray-900 border-transparent': !disabled,
       }"
       class="block w-full appearance-none rounded-lg text-lg leading-tight outline-none border border-transparent px-4 py-3"
       @change="$emit('input', $event.target.value)"

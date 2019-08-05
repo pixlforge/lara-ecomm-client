@@ -8,7 +8,9 @@
       </div>
       <ul class="flex font-bold -mx-4 mt-8 md:mt-0">
         <li class="mx-4">
-          Link
+          <nuxt-link :to="{ name: 'login' }">
+            Login
+          </nuxt-link>
         </li>
         <li class="mx-4">
           Link

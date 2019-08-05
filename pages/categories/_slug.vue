@@ -1,9 +1,11 @@
 <template>
   <section>
+
     <!-- Page title -->
     <h1 class="text-3xl font-extrabold text-gray-800 mb-16">
       Products for a category
     </h1>
+
     <!-- Products -->
     <div class="flex flex-wrap -mx-4">
       <AppProductCard
