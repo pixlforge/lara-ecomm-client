@@ -5,7 +5,7 @@
       Products for a category
     </h1>
     <!-- Products -->
-    <div class="flex flex-wrap">
+    <div class="flex flex-wrap -mx-4">
       <AppProductCard
         v-for="product in products"
         :key="product.id"
