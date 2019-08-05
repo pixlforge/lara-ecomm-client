@@ -60,8 +60,12 @@
             :errors="errors"
             required
           >
-            <option value="1">
-              1
+            <option
+              v-for="n in form.variation.stock_count"
+              :key="n"
+              :value="n"
+            >
+              {{ n }}
             </option>
           </AppFormSelect>
 
@@ -106,6 +110,11 @@ export default {
   computed: {
     variationSelected() {
       return this.form.variation.id
+    }
+  },
+  watch: {
+    'form.variation'() {
+      this.form.quantity = 1
     }
   },
   async asyncData({ app, params }) {
