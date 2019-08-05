@@ -26,7 +26,15 @@
         {{ product.description }}
       </p>
 
-      <AppPriceLabel :price="product.price"/>
+      <!-- Infos -->
+      <div class="flex justify-between items-center">
+        <AppPriceLabel :price="product.price"/>
+
+        <AppLabel
+          v-if="!product.in_stock"
+          label="Out of stock"
+        />
+      </div>
 
       <hr class="border-b border-gray-200 my-12">
 
@@ -70,6 +78,7 @@
 </template>
 
 <script>
+import AppLabel from '@/components/labels/AppLabel'
 import AppFormLabel from '@/components/forms/AppFormLabel'
 import AppFormSelect from '@/components/forms/AppFormSelect'
 import AppPriceLabel from '@/components/labels/AppPriceLabel'
@@ -78,6 +87,7 @@ import AppProductVariation from '@/components/products/AppProductVariation'
 
 export default {
   components: {
+    AppLabel,
     AppFormLabel,
     AppFormSelect,
     AppPriceLabel,
