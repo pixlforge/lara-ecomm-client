@@ -2,13 +2,8 @@
   <button
     :type="type"
     :disabled="disabled"
-    :class="[
-      disabled
-        ? 'bg-white text-gray-200 border-gray-200 cursor-not-allowed shadow-none'
-        : `bg-${color}-400 hover:bg-${color}-500`,
-      {}
-    ]"
-    class="rounded-lg border border-transparent text-sm text-white font-bold uppercase shadow-xl px-4 py-3"
+    :class="`bg-${color}-400 hover:bg-${color}-500 disabled:bg-white`"
+    class="rounded-lg border border-transparent disabled:border-gray-200 text-sm text-white disabled:text-gray-200 font-bold uppercase shadow-xl disabled:shadow-none disabled:cursor-not-allowed px-4 py-3"
   >
     <slot name="label">
       {{ label }}

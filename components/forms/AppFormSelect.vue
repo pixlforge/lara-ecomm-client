@@ -7,12 +7,8 @@
       :value="value"
       :aria-label="ariaLabel"
       :required="required"
-      :class="{
-        'border-red-500': errors[name],
-        'bg-white text-gray-200 border-gray-200 cursor-not-allowed': disabled,
-        'bg-gray-200 text-gray-900 border-transparent': !disabled,
-      }"
-      class="block w-full appearance-none rounded-lg text-lg leading-tight outline-none border border-transparent px-4 py-3"
+      :class="{ 'border-red-500': errors[name] }"
+      class="block w-full appearance-none bg-gray-200 disabled:bg-white rounded-lg text-lg leading-tight text-gray-900 outline-none border border-transparent disabled:border-gray-200 disabled:cursor-not-allowed px-4 py-3"
       @change="$emit('input', $event.target.value)"
     >
       <option

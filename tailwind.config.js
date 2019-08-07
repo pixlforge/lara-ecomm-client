@@ -14,6 +14,11 @@ module.exports = {
     }
   },
   variants: {
-    display: ['responsive', 'group-hover']
+    backgroundColor: ['responsive', 'hover', 'focus', 'disabled'],
+    borderColor: ['responsive', 'hover', 'focus', 'disabled'],
+    boxShadow: ['responsive', 'hover', 'focus', 'disabled'],
+    cursor: ['disabled'],
+    display: ['responsive', 'group-hover'],
+    textColor: ['responsive', 'hover', 'focus', 'disabled']
   }
 }

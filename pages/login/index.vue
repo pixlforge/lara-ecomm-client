@@ -33,6 +33,7 @@
 
       <div>
         <AppButtonPrimary
+          :disabled="!form.email"
           type="submit"
           label="Log in"
         />

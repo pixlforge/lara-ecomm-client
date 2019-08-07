@@ -8,12 +8,8 @@
     :placeholder="placeholder"
     :required="required"
     :aria-label="ariaLabel"
-    :class="{
-      'border-red-500': errors[name],
-      'bg-white text-gray-200 border-gray-200 cursor-not-allowed': disabled,
-      'bg-gray-200 text-gray-900 border-transparent': !disabled,
-    }"
-    class="block w-full appearance-none rounded-lg text-16 leading-tight outline-none focus:shadow-outline border px-4 py-3"
+    :class="{ 'border-red-500': errors[name] }"
+    class="block w-full bg-gray-200 disabled:bg-white appearance-none rounded-lg text-16 leading-tight text-gray-900 disabled:text-gray-200 placeholder-gray-500 outline-none focus:shadow-outline border border-transparent disabled:border-gray-200 disabled:cursor-not-allowed px-4 py-3"
     @input="$emit('input', $event.target.value)"
   >
 </template>
