@@ -31,7 +31,7 @@
             Orders
           </li>
           <li class="mx-4">
-            Cart (0)
+            Cart ({{ count }})
           </li>
         </template>
 
@@ -39,3 +39,15 @@
     </div>
   </div>
 </template>
+
+<script>
+import { mapGetters } from 'vuex'
+
+export default {
+  computed: {
+    ...mapGetters({
+      count: 'cart/count'
+    })
+  }
+}
+</script>
