@@ -1,21 +1,20 @@
 <template>
-  <button
-    :type="type"
+  <nuxt-link
+    :to="url"
     :disabled="disabled"
     :class="[
       `bg-${color}-400 hover:bg-${color}-500 disabled:bg-white`,
       {
-        'text-sm font-bold px-2': size === 'mini',
         'text-sm font-bold px-4 py-3': size === 'normal',
         'text-xl font-extrabold tracking-wide px-6 py-4': size === 'large'
       }
     ]"
-    class="rounded-lg border border-transparent disabled:border-gray-200 text-white disabled:text-gray-200 uppercase text-center shadow-xl disabled:shadow-none disabled:cursor-not-allowed"
+    class="rounded-lg border border-transparent disabled:border-gray-200 text-white disabled:text-gray-200 text-center uppercase shadow-xl disabled:shadow-none disabled:cursor-not-allowed"
   >
-    <slot>
+    <slot name="label">
       {{ label }}
     </slot>
-  </button>
+  </nuxt-link>
 </template>
 
 <script>
@@ -26,7 +25,7 @@ export default {
       required: false,
       default: ''
     },
-    type: {
+    url: {
       type: String,
       required: false,
       default: ''

@@ -31,7 +31,9 @@
             Orders
           </li>
           <li class="mx-4">
-            Cart ({{ count }})
+            <nuxt-link :to="{ name: 'cart' }">
+              Cart ({{ count }})
+            </nuxt-link>
           </li>
         </template>
 
