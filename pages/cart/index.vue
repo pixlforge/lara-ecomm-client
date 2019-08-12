@@ -6,6 +6,8 @@
       My Cart
     </h1>
 
+    {{ hasChanged }}
+
     <AppCartOverview/>
 
     <AppButtonLinkPrimary
@@ -32,7 +34,8 @@ export default {
   },
   computed: {
     ...mapGetters({
-      isEmpty: 'cart/isEmpty'
+      isEmpty: 'cart/isEmpty',
+      hasChanged: 'cart/hasChanged'
     })
   }
 }
