@@ -62,6 +62,8 @@
 </template>
 
 <script>
+import { mapActions } from 'vuex'
+
 import AppFormSelect from '@/components/forms/AppFormSelect'
 
 export default {
@@ -98,8 +100,11 @@ export default {
     }
   },
   methods: {
-    remove() {
-      console.log('Remove product from the cart')
+    ...mapActions({
+      destroy: 'cart/destroy'
+    }),
+    async remove() {
+      await this.destroy(this.product.id)
     }
   }
 }

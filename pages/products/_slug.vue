@@ -39,7 +39,7 @@
       <hr class="border-b border-gray-200 my-12">
 
       <section class="mt-12">
-        <form action="">
+        <form @submit.prevent>
 
           <!-- Variations -->
           <AppProductVariation
@@ -54,7 +54,7 @@
           <!-- Quantity -->
           <AppFormLabel label="Quantity"/>
           <AppFormSelect
-            v-model="form.quantity"
+            v-model.number="form.quantity"
             :disabled="!variationSelected"
             name="quantity"
             :errors="errors"
