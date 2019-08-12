@@ -13,7 +13,7 @@
     <!-- Product name -->
     <div class="w-full md:w-5/12 px-4">
       <h5 class="text-lg md:text-xl text-gray-900 font-bold text-center md:text-left">
-        {{ baseProductName }} {{ productVariationName }}
+        {{ baseProductName }} {{ productVariationType }} {{ productVariationName }}
       </h5>
       <p class="text-gray-700 leading-relaxed text-center md:text-left mt-4">
         {{ baseProductDescription }}
@@ -91,6 +91,9 @@ export default {
     },
     productVariationName() {
       return this.product.name
+    },
+    productVariationType() {
+      return this.product.type
     },
     baseProductDescription() {
       return this.product.product.description

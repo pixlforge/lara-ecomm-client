@@ -6,8 +6,6 @@
       My Cart
     </h1>
 
-    {{ hasChanged }}
-
     <AppCartOverview/>
 
     <AppButtonLinkPrimary
