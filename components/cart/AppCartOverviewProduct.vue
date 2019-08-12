@@ -31,7 +31,10 @@
         :errors="errors"
         name="quantity"
       >
-        <option value="0">
+        <option
+          v-if="productOutOfStock"
+          value="0"
+        >
           0
         </option>
         <option
@@ -97,10 +100,22 @@ export default {
     },
     productTotal() {
       return this.product.total.formatted
+    },
+    productOutOfStock() {
+      return this.product.quantity === 0
+    }
+  },
+  watch: {
+    async quantity(quantity) {
+      await this.update({
+        productId: this.product.id,
+        quantity: quantity
+      })
     }
   },
   methods: {
     ...mapActions({
+      update: 'cart/update',
       destroy: 'cart/destroy'
     }),
     async remove() {
