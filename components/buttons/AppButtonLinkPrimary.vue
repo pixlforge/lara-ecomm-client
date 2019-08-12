@@ -1,7 +1,6 @@
 <template>
   <nuxt-link
     :to="url"
-    :disabled="disabled"
     :class="[
       `bg-${color}-400 hover:bg-${color}-500 disabled:bg-white`,
       {
@@ -29,11 +28,6 @@ export default {
       type: String,
       required: false,
       default: ''
-    },
-    disabled: {
-      type: Boolean,
-      required: false,
-      default: false
     },
     color: {
       type: String,

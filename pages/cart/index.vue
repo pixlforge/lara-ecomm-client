@@ -9,6 +9,7 @@
     <AppCartOverview/>
 
     <AppButtonLinkPrimary
+      v-if="!isEmpty"
       :to="{ name: 'index' }"
       label="Proceed to Checkout"
       size="large"
@@ -19,6 +20,8 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
+
 import AppCartOverview from '@/components/cart/AppCartOverview'
 import AppButtonLinkPrimary from '@/components/buttons/AppButtonLinkPrimary'
 
@@ -26,6 +29,11 @@ export default {
   components: {
     AppCartOverview,
     AppButtonLinkPrimary
+  },
+  computed: {
+    ...mapGetters({
+      isEmpty: 'cart/isEmpty'
+    })
   }
 }
 </script>
