@@ -1,6 +1,8 @@
 export const state = () => ({
   products: [],
-  isEmpty: true
+  isEmpty: true,
+  subtotal: null,
+  total: null
 })
 
 export const getters = {
@@ -12,6 +14,12 @@ export const getters = {
   },
   isEmpty(state) {
     return state.isEmpty
+  },
+  subtotal(state) {
+    return state.subtotal
+  },
+  total(state) {
+    return state.total
   }
 }
 
@@ -21,6 +29,12 @@ export const mutations = {
   },
   SET_EMPTY(state, isEmpty) {
     state.isEmpty = isEmpty
+  },
+  SET_SUBTOTAL(state, subtotal) {
+    state.subtotal = subtotal
+  },
+  SET_TOTAL(state, total) {
+    state.total = total
   }
 }
 
@@ -30,6 +44,8 @@ export const actions = {
 
     commit('SET_PRODUCTS', res.data.products)
     commit('SET_EMPTY', res.meta.isEmpty)
+    commit('SET_SUBTOTAL', res.meta.subtotal)
+    commit('SET_TOTAL', res.meta.total)
 
     return res
   },
