@@ -64,5 +64,9 @@ export const actions = {
   async update({ dispatch }, { productId, quantity }) {
     await this.$axios.$patch(`/cart/${productId}`, { quantity })
     await dispatch('getCart')
+  },
+  async store({ dispatch }, products) {
+    await this.$axios.$post('/cart', { products })
+    await dispatch('getCart')
   }
 }

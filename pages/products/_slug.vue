@@ -39,7 +39,7 @@
       <hr class="border-b border-gray-200 my-12">
 
       <section class="mt-12">
-        <form @submit.prevent>
+        <form @submit.prevent="add">
 
           <!-- Variations -->
           <AppProductVariation
@@ -82,6 +82,8 @@
 </template>
 
 <script>
+import { mapActions } from 'vuex'
+
 import AppLabel from '@/components/labels/AppLabel'
 import AppFormLabel from '@/components/forms/AppFormLabel'
 import AppFormSelect from '@/components/forms/AppFormSelect'
@@ -122,6 +124,20 @@ export default {
 
     return {
       product: product.data
+    }
+  },
+  methods: {
+    ...mapActions({
+      store: 'cart/store'
+    }),
+    add() {
+      this.store([{
+        id: this.form.variation.id,
+        quantity: this.form.quantity
+      }])
+
+      this.form.variation = {}
+      this.form.quantity = 1
     }
   }
 }
