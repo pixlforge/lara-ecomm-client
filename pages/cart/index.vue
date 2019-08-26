@@ -10,7 +10,7 @@
 
     <AppButtonLinkPrimary
       v-if="!isEmpty"
-      :to="{ name: 'index' }"
+      :url="{ name: 'checkout' }"
       label="Proceed to Checkout"
       size="large"
       class="block"

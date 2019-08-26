@@ -25,9 +25,11 @@ export default {
       default: ''
     },
     url: {
-      type: String,
+      type: Object,
       required: false,
-      default: ''
+      default: () => {
+        return {}
+      }
     },
     color: {
       type: String,

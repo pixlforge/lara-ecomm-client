@@ -19,6 +19,17 @@
           {{ subtotal.formatted }}
         </span>
       </div>
+      <div
+        v-if="shipping"
+        class="flex justify-between"
+      >
+        <h5 class="font-bold">
+          Shipping
+        </h5>
+        <span class="ml-2">
+          {{ shipping }}
+        </span>
+      </div>
       <div class="flex justify-between">
         <h5 class="font-bold">
           Total
@@ -40,6 +51,13 @@ import AppCartOverviewProduct from '@/components/cart/AppCartOverviewProduct'
 export default {
   components: {
     AppCartOverviewProduct
+  },
+  props: {
+    shipping: {
+      type: String,
+      required: false,
+      default: ''
+    }
   },
   computed: {
     ...mapGetters({
