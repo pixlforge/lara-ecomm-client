@@ -4,24 +4,49 @@
       Ship to
     </h1>
 
-    <template v-if="selectedAddress">
-      <ul class="text-gray-900 mt-6">
-        <li>
-          {{ selectedAddress.name }}
-        </li>
-        <li>
-          {{ selectedAddress.address_1 }}
-        </li>
-        <li>
-          {{ selectedAddress.country.code }} &ndash; {{ selectedAddress.postal_code }} {{ selectedAddress.city }}
-        </li>
-      </ul>
+    <template v-if="selecting">
+      <AppShippingAddressSelector
+        :addresses="addresses"
+        :selected-address="selectedAddress"
+        @address:selected="switchAddress"
+      />
     </template>
+    <template v-else>
+      <template v-if="selectedAddress">
+        <ul class="text-gray-900 mt-6">
+          <li>
+            {{ selectedAddress.name }}
+          </li>
+          <li>
+            {{ selectedAddress.address_1 }}
+          </li>
+          <li>
+            {{ selectedAddress.country.code }} &ndash; {{ selectedAddress.postal_code }} {{ selectedAddress.city }}
+          </li>
+        </ul>
+      </template>
+
+      <div class="mt-6">
+        <AppButtonPrimary
+          label="Change shipping address"
+          @click.native="selecting = true"
+        />
+        <AppButtonPrimary label="Create shipping address"/>
+      </div>
+    </template>
+
   </div>
 </template>
 
 <script>
+import AppButtonPrimary from '@/components/buttons/AppButtonPrimary'
+import AppShippingAddressSelector from '@/components/checkout/addresses/AppShippingAddressSelector'
+
 export default {
+  components: {
+    AppButtonPrimary,
+    AppShippingAddressSelector
+  },
   props: {
     addresses: {
       type: Array,
@@ -31,7 +56,9 @@ export default {
   data() {
     return {
       localAddresses: this.addresses,
-      selectedAddress: null
+      selectedAddress: null,
+      selecting: false,
+      creating: false
     }
   },
   computed: {
@@ -50,6 +77,7 @@ export default {
   methods: {
     switchAddress(address) {
       this.selectedAddress = address
+      this.selecting = false
     }
   }
 }
