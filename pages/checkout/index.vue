@@ -2,21 +2,17 @@
   <div class="-mt-8">
 
     <!-- Address -->
-    <div class="border-l-8 border-gray-400 text-2xl font-semibold text-gray-900 px-4 py-6 my-8">
-      <h1 class="text-2xl font-semibold text-gray-900">
-        Ship to
-      </h1>
-    </div>
+    <AppShippingAddress :addresses="addresses"/>
 
     <!-- Payment methods -->
-    <div class="border-l-8 border-gray-400 text-2xl font-semibold text-gray-900 px-4 py-6 my-8">
+    <div class="border-l-8 border-gray-400 px-4 py-6 my-8">
       <h1 class="text-2xl font-semibold text-gray-900">
         Payment
       </h1>
     </div>
 
     <!-- Shipping -->
-    <div class="border-l-8 border-gray-400 text-2xl font-semibold text-gray-900 px-4 py-6 my-8">
+    <div class="border-l-8 border-gray-400 px-4 py-6 my-8">
       <h1 class="text-2xl font-semibold text-gray-900">
         Shipping
       </h1>
@@ -64,18 +60,21 @@ import { mapGetters } from 'vuex'
 import AppFormSelect from '@/components/forms/AppFormSelect'
 import AppCartOverview from '@/components/cart/AppCartOverview'
 import AppButtonPrimary from '@/components/buttons/AppButtonPrimary'
+import AppShippingAddress from '@/components/checkout/addresses/AppShippingAddress'
 
 export default {
   components: {
     AppFormSelect,
     AppCartOverview,
-    AppButtonPrimary
+    AppButtonPrimary,
+    AppShippingAddress
   },
   data() {
     return {
       form: {
         shippingMethod: 1
       },
+      addresses: [],
       errors: {}
     }
   },
@@ -84,6 +83,13 @@ export default {
       products: 'cart/products',
       isEmpty: 'cart/isEmpty'
     })
+  },
+  async asyncData({ app }) {
+    const addresses = await app.$axios.$get('/addresses')
+
+    return {
+      addresses: addresses.data
+    }
   }
 }
 </script>
