@@ -72,22 +72,9 @@
 
       <!-- Country -->
       <div class="my-8">
-        <AppFormLabel name="country">
-          Country
-        </AppFormLabel>
-        <AppFormSelect
-          v-model="form.country_id"
+        <AppCountryDropdown
+          v-model.number="form.country_id"
           :errors="errors"
-          name="country"
-          required
-        >
-          <option value="3">
-            Switzerland
-          </option>
-        </AppFormSelect>
-        <AppFormValidation
-          :errors="errors"
-          name="country"
         />
       </div>
 
@@ -103,6 +90,7 @@
         <!-- Cancel -->
         <AppButtonSecondary
           label="Cancel"
+          type="button"
           @click.native="$emit('address-creator:close') "
         />
       </div>
@@ -113,18 +101,18 @@
 <script>
 import AppFormInput from '@/components/forms/AppFormInput'
 import AppFormLabel from '@/components/forms/AppFormLabel'
-import AppFormSelect from '@/components/forms/AppFormSelect'
 import AppFormValidation from '@/components/forms/AppFormValidation'
 import AppButtonPrimary from '@/components/buttons/AppButtonPrimary'
+import AppCountryDropdown from '@/components/forms/AppCountryDropdown'
 import AppButtonSecondary from '@/components/buttons/AppButtonSecondary'
 
 export default {
   components: {
     AppFormInput,
     AppFormLabel,
-    AppFormSelect,
     AppFormValidation,
     AppButtonPrimary,
+    AppCountryDropdown,
     AppButtonSecondary
   },
   data() {
@@ -134,7 +122,7 @@ export default {
         address_1: '',
         postal_code: '',
         city: '',
-        country_id: null,
+        country_id: '',
         default: true
       },
       errors: {}
