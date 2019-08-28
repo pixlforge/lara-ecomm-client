@@ -1,15 +1,25 @@
 <template>
-  <label class="inline-block text-sm font-bold uppercase text-pink-400 mb-2">
-    {{ label }}
+  <label
+    :for="name"
+    class="inline-block text-sm font-bold uppercase text-pink-400 mb-2"
+  >
+    <slot>
+      {{ label }}
+    </slot>
   </label>
 </template>
 
 <script>
 export default {
   props: {
-    label: {
+    name: {
       type: String,
       required: true
+    },
+    label: {
+      type: String,
+      required: false,
+      default: ''
     }
   }
 }

@@ -4,6 +4,7 @@
       Ship to
     </h1>
 
+    <!-- Select an address -->
     <template v-if="selecting">
       <AppShippingAddressSelector
         :addresses="addresses"
@@ -11,6 +12,16 @@
         @address:selected="switchAddress"
       />
     </template>
+
+    <!-- Create an address -->
+    <template v-else-if="creating">
+      <AppShippingAddressCreator
+        @address:created="addAddress"
+        @address-creator:close="creating = false"
+      />
+    </template>
+
+    <!-- Current shipping address -->
     <template v-else>
       <template v-if="selectedAddress">
         <ul class="text-gray-900 mt-6">
@@ -31,7 +42,10 @@
           label="Change shipping address"
           @click.native="selecting = true"
         />
-        <AppButtonPrimary label="Create shipping address"/>
+        <AppButtonPrimary
+          label="Add an address"
+          @click.native="creating = true"
+        />
       </div>
     </template>
 
@@ -40,11 +54,13 @@
 
 <script>
 import AppButtonPrimary from '@/components/buttons/AppButtonPrimary'
+import AppShippingAddressCreator from '@/components/checkout/addresses/AppShippingAddressCreator'
 import AppShippingAddressSelector from '@/components/checkout/addresses/AppShippingAddressSelector'
 
 export default {
   components: {
     AppButtonPrimary,
+    AppShippingAddressCreator,
     AppShippingAddressSelector
   },
   props: {
@@ -78,6 +94,11 @@ export default {
     switchAddress(address) {
       this.selectedAddress = address
       this.selecting = false
+      this.creating = false
+    },
+    addAddress(address) {
+      this.localAddresses.push(address)
+      this.switchAddress(address)
     }
   }
 }
