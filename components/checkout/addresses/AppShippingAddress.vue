@@ -67,6 +67,10 @@ export default {
     addresses: {
       type: Array,
       required: true
+    },
+    value: {
+      type: [String, Number],
+      required: true
     }
   },
   data() {
@@ -83,6 +87,11 @@ export default {
     },
     defaultAddress() {
       return this.localAddresses.find(address => address.default)
+    }
+  },
+  watch: {
+    selectedAddress() {
+      this.$emit('input', this.selectedAddress.id)
     }
   },
   mounted() {

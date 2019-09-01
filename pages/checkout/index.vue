@@ -2,7 +2,10 @@
   <div class="-mt-8">
 
     <!-- Address -->
-    <AppShippingAddress :addresses="addresses"/>
+    <AppShippingAddress
+      v-model="form.address_id"
+      :addresses="addresses"
+    />
 
     <!-- Payment methods -->
     <div class="border-l-8 border-gray-400 px-4 py-6 my-8">
@@ -72,7 +75,8 @@ export default {
   data() {
     return {
       form: {
-        shippingMethod: 1
+        address_id: '',
+        shippingMethod: ''
       },
       addresses: [],
       errors: {}
