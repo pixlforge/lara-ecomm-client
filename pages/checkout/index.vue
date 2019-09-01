@@ -21,13 +21,17 @@
       </h1>
 
       <AppFormSelect
-        :value="form.shippingMethod"
+        v-model.number="form.shippingMethod_id"
         :errors="errors"
         name="shippingMethod"
         class="mt-6"
       >
-        <option value="1">
-          La Poste
+        <option
+          v-for="shippingMethod in shippingMethods"
+          :key="shippingMethod.id"
+          :value="shippingMethod.id"
+        >
+          {{ shippingMethod.name }} ({{ shippingMethod.price.formatted }})
         </option>
       </AppFormSelect>
     </div>
@@ -76,8 +80,9 @@ export default {
     return {
       form: {
         address_id: '',
-        shippingMethod: ''
+        shippingMethod_id: ''
       },
+      shippingMethods: [],
       addresses: [],
       errors: {}
     }
@@ -88,11 +93,26 @@ export default {
       isEmpty: 'cart/isEmpty'
     })
   },
+  watch: {
+    'form.address_id'(address) {
+      this.getShippingMethodsForAddress(address)
+    }
+  },
   async asyncData({ app }) {
     const addresses = await app.$axios.$get('/addresses')
 
     return {
       addresses: addresses.data
+    }
+  },
+  methods: {
+    async getShippingMethodsForAddress(address) {
+      try {
+        const res = await this.$axios.$get(`/addresses/${address}/shipping`)
+        this.shippingMethods = res.data
+      } catch (e) {
+        this.errors = e.response.data.errors
+      }
     }
   }
 }
