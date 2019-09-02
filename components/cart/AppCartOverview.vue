@@ -26,8 +26,11 @@
         <h5 class="font-bold">
           Shipping
         </h5>
-        <span class="ml-2">
-          {{ shipping }}
+        <span
+          v-if="shipping"
+          class="ml-2"
+        >
+          {{ shipping.price.formatted }}
         </span>
       </div>
       <div class="flex justify-between">
@@ -54,9 +57,11 @@ export default {
   },
   props: {
     shipping: {
-      type: String,
+      type: Object,
       required: false,
-      default: ''
+      default: () => {
+        return {}
+      }
     }
   },
   computed: {

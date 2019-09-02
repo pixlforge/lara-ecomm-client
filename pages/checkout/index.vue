@@ -21,7 +21,7 @@
       </h1>
 
       <AppFormSelect
-        v-model.number="form.shippingMethod_id"
+        v-model.number="shippingMethodId"
         :errors="errors"
         name="shippingMethod"
         class="mt-6"
@@ -30,6 +30,7 @@
           v-for="shippingMethod in shippingMethods"
           :key="shippingMethod.id"
           :value="shippingMethod.id"
+          :selected="shippingMethod.id == shippingMethodId"
         >
           {{ shippingMethod.name }} ({{ shippingMethod.price.formatted }})
         </option>
@@ -46,7 +47,7 @@
       </h1>
 
       <AppCartOverview
-        shipping="CHF 0.00"
+        :shipping="shippingMethod"
         class="mt-6"
       />
     </section>
@@ -62,7 +63,7 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
+import { mapGetters, mapActions } from 'vuex'
 
 import AppFormSelect from '@/components/forms/AppFormSelect'
 import AppCartOverview from '@/components/cart/AppCartOverview'
@@ -79,8 +80,7 @@ export default {
   data() {
     return {
       form: {
-        address_id: '',
-        shippingMethod_id: ''
+        address_id: ''
       },
       shippingMethods: [],
       addresses: [],
@@ -90,12 +90,26 @@ export default {
   computed: {
     ...mapGetters({
       products: 'cart/products',
-      isEmpty: 'cart/isEmpty'
-    })
+      isEmpty: 'cart/isEmpty',
+      shippingMethod: 'cart/shippingMethod'
+    }),
+    shippingMethodId: {
+      get() {
+        return this.shippingMethod ? this.shippingMethod.id : ''
+      },
+      set(value) {
+        this.setShippingMethod(this.shippingMethods.find(method => method.id === value))
+      }
+    }
   },
   watch: {
     'form.address_id'(address) {
-      this.getShippingMethodsForAddress(address)
+      this.getShippingMethodsForAddress(address).then(() => {
+        this.setShippingMethod(this.shippingMethods[0])
+      })
+    },
+    shippingMethodId() {
+      this.getCart()
     }
   },
   async asyncData({ app }) {
@@ -106,10 +120,15 @@ export default {
     }
   },
   methods: {
+    ...mapActions({
+      getCart: 'cart/getCart',
+      setShippingMethod: 'cart/setShippingMethod'
+    }),
     async getShippingMethodsForAddress(address) {
       try {
         const res = await this.$axios.$get(`/addresses/${address}/shipping`)
         this.shippingMethods = res.data
+        return res
       } catch (e) {
         this.errors = e.response.data.errors
       }
