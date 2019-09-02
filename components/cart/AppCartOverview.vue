@@ -20,16 +20,13 @@
         </span>
       </div>
       <div
-        v-if="shipping"
+        v-if="shipping && shipping.price"
         class="flex justify-between"
       >
         <h5 class="font-bold">
           Shipping
         </h5>
-        <span
-          v-if="shipping"
-          class="ml-2"
-        >
+        <span class="ml-2">
           {{ shipping.price.formatted }}
         </span>
       </div>
