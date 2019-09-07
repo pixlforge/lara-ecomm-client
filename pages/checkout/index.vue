@@ -54,9 +54,10 @@
 
     <!-- Place order button -->
     <AppButtonPrimary
-      :disabled="isEmpty"
+      :disabled="isEmpty || submitting"
       label="Place order"
       size="large"
+      @click.native="order"
     />
 
   </div>
@@ -84,7 +85,8 @@ export default {
       },
       shippingMethods: [],
       addresses: [],
-      errors: {}
+      errors: {},
+      submitting: false
     }
   },
   computed: {
@@ -132,6 +134,26 @@ export default {
       } catch (e) {
         this.errors = e.response.data.errors
       }
+    },
+
+    /**
+     * Submit the order.
+     */
+    async order() {
+      this.submitting = true
+
+      try {
+        await this.$axios.$post('/orders', {
+          ...this.form,
+          shipping_method_id: this.shippingMethodId
+        })
+        await this.getCart()
+        this.$router.push({ name: 'orders' })
+      } catch (e) {
+        this.errors = e.response.data.errors
+      }
+
+      this.submitting = false
     }
   }
 }
