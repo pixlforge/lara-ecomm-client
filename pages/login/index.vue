@@ -10,7 +10,10 @@
 
       <!-- Email -->
       <div class="my-8">
-        <AppFormLabel label="Email"/>
+        <AppFormLabel
+          name="email"
+          label="Email"
+        />
         <AppFormInput
           v-model="form.email"
           name="email"
@@ -22,7 +25,10 @@
 
       <!-- Password -->
       <div class="my-8">
-        <AppFormLabel label="Password"/>
+        <AppFormLabel
+          name="password"
+          label="Password"
+        />
         <AppFormInput
           v-model="form.password"
           name="password"
