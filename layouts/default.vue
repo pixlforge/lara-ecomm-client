@@ -1,5 +1,6 @@
 <template>
   <div class="text-gray-600">
+    <TheAlert/>
     <AppNavbar/>
     <AppCategoriesMenu/>
     <nuxt class="container px-8 py-32 mx-auto"/>
@@ -7,11 +8,13 @@
 </template>
 
 <script>
+import TheAlert from '@/components/globals/TheAlert'
 import AppNavbar from '@/components/navbar/AppNavbar'
 import AppCategoriesMenu from '@/components/categories/AppCategoriesMenu'
 
 export default {
   components: {
+    TheAlert,
     AppNavbar,
     AppCategoriesMenu
   }

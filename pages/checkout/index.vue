@@ -23,7 +23,7 @@
       <AppFormSelect
         v-model.number="shippingMethodId"
         :errors="errors"
-        name="shippingMethod"
+        name="shipping_method_id"
         class="mt-6"
       >
         <option
@@ -123,6 +123,7 @@ export default {
   },
   methods: {
     ...mapActions({
+      flash: 'alert/flash',
       getCart: 'cart/getCart',
       setShippingMethod: 'cart/setShippingMethod'
     }),
@@ -149,8 +150,10 @@ export default {
         })
         await this.getCart()
         this.$router.push({ name: 'orders' })
+        this.flash('Purchase successful!')
       } catch (e) {
-        this.errors = e.response.data.errors
+        this.flash(e.response.data.message)
+        await this.getCart()
       }
 
       this.submitting = false
