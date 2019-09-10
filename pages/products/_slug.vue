@@ -52,7 +52,10 @@
           />
 
           <!-- Quantity -->
-          <AppFormLabel label="Quantity"/>
+          <AppFormLabel
+            name="quantity"
+            label="Quantity"
+          />
           <AppFormSelect
             v-model.number="form.quantity"
             :disabled="!variationSelected"

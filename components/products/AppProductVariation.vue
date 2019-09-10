@@ -2,7 +2,10 @@
   <div>
 
     <!-- Label -->
-    <AppFormLabel :label="type"/>
+    <AppFormLabel
+      :label="type"
+      name="variation"
+    />
 
     <!-- Select -->
     <AppFormSelect

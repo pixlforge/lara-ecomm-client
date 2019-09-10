@@ -28,7 +28,9 @@
             {{ $auth.user.name }}
           </li>
           <li class="mx-4">
-            Orders
+            <nuxt-link :to="{ name: 'orders' }">
+              Orders
+            </nuxt-link>
           </li>
           <li class="mx-4">
             <nuxt-link :to="{ name: 'cart' }">
