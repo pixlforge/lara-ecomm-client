@@ -9,8 +9,9 @@
     <section>
       <ul class="rounded-lg border border-gray-300">
         <Order
-          v-for="n in 10"
-          :key="n"
+          v-for="order in orders"
+          :key="order.id"
+          :order="order"
         />
       </ul>
     </section>
@@ -24,6 +25,13 @@ import Order from '@/components/orders/Order'
 export default {
   components: {
     Order
+  },
+  async asyncData({ app }) {
+    const res = await app.$axios.$get('/orders')
+
+    return {
+      orders: res.data
+    }
   }
 }
 </script>

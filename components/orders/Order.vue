@@ -1,19 +1,27 @@
 <template>
   <li class="text-lg even:bg-gray-100 flex p-6">
     <div class="flex-1">
-      #1
+      {{ order.id }}
     </div>
     <div class="flex-1">
-      2019-01-01
+      {{ order.created_at }}
     </div>
     <div class="flex-1">
-      Product name
+      {{ order.subtotal.formatted }}
     </div>
     <div class="flex-1">
-      CHF 150.-
-    </div>
-    <div class="flex-1">
-      Pending
+      {{ order.status }}
     </div>
   </li>
 </template>
+
+<script>
+export default {
+  props: {
+    order: {
+      type: Object,
+      required: true
+    }
+  }
+}
+</script>
