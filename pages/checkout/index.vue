@@ -8,11 +8,10 @@
     />
 
     <!-- Payment methods -->
-    <div class="border-l-8 border-gray-400 px-4 py-6 my-8">
-      <h1 class="text-2xl font-semibold text-gray-900">
-        Payment
-      </h1>
-    </div>
+    <AppPaymentMethods
+      v-model="form.payment_method_id"
+      :payment-methods="paymentMethods"
+    />
 
     <!-- Shipping -->
     <div class="border-l-8 border-gray-400 px-4 py-6 my-8">
@@ -70,20 +69,24 @@ import AppFormSelect from '@/components/forms/AppFormSelect'
 import AppCartOverview from '@/components/cart/AppCartOverview'
 import AppButtonPrimary from '@/components/buttons/AppButtonPrimary'
 import AppShippingAddress from '@/components/checkout/addresses/AppShippingAddress'
+import AppPaymentMethods from '@/components/checkout/paymentMethods/AppPaymentMethods'
 
 export default {
   components: {
     AppFormSelect,
     AppCartOverview,
     AppButtonPrimary,
-    AppShippingAddress
+    AppShippingAddress,
+    AppPaymentMethods
   },
   data() {
     return {
       form: {
-        address_id: ''
+        address_id: '',
+        payment_method_id: ''
       },
       shippingMethods: [],
+      paymentMethods: [],
       addresses: [],
       errors: {},
       submitting: false
@@ -116,9 +119,11 @@ export default {
   },
   async asyncData({ app }) {
     const addresses = await app.$axios.$get('/addresses')
+    const paymentMethods = await app.$axios.$get('/payment-methods')
 
     return {
-      addresses: addresses.data
+      addresses: addresses.data,
+      paymentMethods: paymentMethods.data
     }
   },
   methods: {
