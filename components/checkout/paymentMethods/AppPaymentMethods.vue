@@ -15,7 +15,10 @@
 
     <!-- Create a payment method -->
     <template v-else-if="creating">
-      Create a payment method
+      <AppPaymentMethodCreator
+        @add-card:added="addPaymentMethod"
+        @add-card:cancel="creating = false"
+      />
     </template>
 
     <!-- Current shipping address -->
@@ -33,6 +36,7 @@
 
       <div class="mt-6">
         <AppButtonPrimary
+          v-if="paymentMethods.length"
           label="Change payment method"
           @click.native="selecting = true"
         />
@@ -48,11 +52,13 @@
 
 <script>
 import AppButtonPrimary from '@/components/buttons/AppButtonPrimary'
+import AppPaymentMethodCreator from '@/components/checkout/paymentMethods/AppPaymentMethodCreator'
 import AppPaymentMethodSelector from '@/components/checkout/paymentMethods/AppPaymentMethodSelector'
 
 export default {
   components: {
     AppButtonPrimary,
+    AppPaymentMethodCreator,
     AppPaymentMethodSelector
   },
   props: {
