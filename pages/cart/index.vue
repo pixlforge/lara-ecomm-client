@@ -26,6 +26,7 @@ import AppCartOverview from '@/components/cart/AppCartOverview'
 import AppButtonLinkPrimary from '@/components/buttons/AppButtonLinkPrimary'
 
 export default {
+  middleware: ['redirectIfGuest'],
   components: {
     AppCartOverview,
     AppButtonLinkPrimary

@@ -23,6 +23,7 @@
 import Order from '@/components/orders/Order'
 
 export default {
+  middleware: ['redirectIfGuest'],
   components: {
     Order
   },

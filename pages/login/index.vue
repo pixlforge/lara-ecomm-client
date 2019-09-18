@@ -55,6 +55,7 @@ import AppFormInput from '@/components/forms/AppFormInput'
 import AppButtonPrimary from '@/components/buttons/AppButtonPrimary'
 
 export default {
+  middleware: ['redirectIfAuth'],
   components: {
     AppFormLabel,
     AppFormInput,
@@ -74,6 +75,10 @@ export default {
       await this.$auth.loginWith('local', {
         data: this.form
       })
+
+      if (this.$route.query.redirect) {
+        this.$router.push(this.$route.query.redirect)
+      }
     }
   }
 }

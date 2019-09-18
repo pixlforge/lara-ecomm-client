@@ -72,6 +72,7 @@ import AppShippingAddress from '@/components/checkout/addresses/AppShippingAddre
 import AppPaymentMethods from '@/components/checkout/paymentMethods/AppPaymentMethods'
 
 export default {
+  middleware: ['redirectIfGuest'],
   components: {
     AppFormSelect,
     AppCartOverview,
